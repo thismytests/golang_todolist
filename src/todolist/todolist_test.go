@@ -83,10 +83,6 @@ func TestTodoListRemoveItemNegative(t *testing.T) {
 
 	_, err := todolist.removeItem(removeItem)
 
-	fmt.Println("err", err)
-
-	//fmt.Println("removedItem", removedItem)
-
 	if err == nil {
 		t.Errorf("Wrong  logic")
 	}
