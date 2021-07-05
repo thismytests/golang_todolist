@@ -33,7 +33,7 @@ func (todolist Todolist) findItemByIdInStore(id string) (Item, error) {
 
 func (todolist *Todolist) addItem(createItem CreateItem) (Item, error) {
 	item := Item{
-		id:        "",
+		id:        generateID(),
 		text:      createItem.text,
 		isChecked: false,
 	}
