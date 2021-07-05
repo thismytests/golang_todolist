@@ -21,6 +21,16 @@ type Todolist struct {
 	store []Item
 }
 
+func (todolist Todolist) findItemByIdInStore(id string) (Item, error) {
+	for i := 0; i < len(todolist.store); i++ {
+		if todolist.store[i].id == id {
+			return todolist.store[i], nil
+		}
+	}
+
+	return Item{}, errors.New("Not found")
+}
+
 func (todolist *Todolist) addItem(createItem CreateItem) (Item, error) {
 	item := Item{
 		id:        "",
@@ -46,7 +56,16 @@ func (todolist *Todolist) removeItem(item Item) (Item, error) {
 	return result, fmt.Errorf("item with id %s was not found", item.id)
 }
 
-func TodoList(item Item) bool {
+func (todolist *Todolist) updateItem(id string, item Item) (Item, error) {
+	errMessage := fmt.Sprintf("updatedItem with id %s was not founded", item.id)
 
-	return true
+	for i := 0; i < len(todolist.store); i++ {
+		if todolist.store[i].id == item.id {
+			todolist.store[i] = item
+			return item, nil
+		}
+	}
+
+	return Item{}, errors.New(errMessage)
+
 }
